@@ -5,15 +5,13 @@ export const getMetadataItems = (
 ) => {
   const baseUrl =
     process.env.NODE_ENV === 'production'
-      ? 'https://yourdomain.com/'
+      ? 'https://parkirantc.vercel.app/'
       : 'http://localhost:3000'
   const pathname = baseUrl + slug
-  const title = templateTitle
-    ? `${templateTitle} | Your Team Name 2025`
-    : 'Your Team Name 2025'
+  const title = templateTitle ? `${templateTitle} | Parkiran TC` : 'Parkiran TC'
   const description = templateDescription
-    ? 'Your Description Event or Team'
-    : 'Your Description Event or Team'
+    ? 'Branding daripada parkiran teknik informatika ITS'
+    : 'Branding daripada parkiran teknik informatika ITS'
   // const ogUrl = new URL(
   //   baseUrl + `/api/og?title=${templateTitle}&description=${description}`,
   // ).href;
