@@ -20,10 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <meta
-        name="google-site-verification"
-        content="JYKHvVcV7z3LOUiG__HdHKJkyBJfxscd0t8-4kcVX8w"
-      />
       <head>
         <link
           rel="shortcut icon"
@@ -33,7 +29,7 @@ export default function RootLayout({
       </head>
       <body className={cn(Livvic.variable, Monday.variable, 'bg-black')}>
         <Providers>{children}</Providers>
-        <GoogleAnalytics gaId="" />
+        <GoogleAnalytics gaId="G-WJQHLV265Z" />
       </body>
     </html>
   )
