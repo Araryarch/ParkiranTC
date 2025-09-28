@@ -3,7 +3,6 @@
 import Typography from '@/components/Typography'
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import Image from 'next/image'
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement | null>(null)
@@ -73,12 +72,15 @@ export default function Hero() {
         </div>
         <div className="w-full h-[60vh] border-b-1 border-white flex justify-center">
           <div className="w-full h-full max-w-[95vw] flex justify-center items-center bg-cover bg-center relative overflow-hidden">
-            <Image
-              src={'/images/landing/hero/bg.png'}
-              alt="bg"
-              fill
-              className="object-cover bg-right"
-            />
+            <video
+              src="/images/landing/hero/branding.mp4"
+              className="absolute inset-0 w-full h-full object-cover p-1"
+              controls
+              playsInline
+              autoPlay
+              loop
+              muted
+            ></video>
           </div>
         </div>
         <div className="w-full h-[5vh] border-white"></div>
