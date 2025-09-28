@@ -57,10 +57,10 @@ export default function Hero() {
         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[95vw] border-r-1 border-l-1 border-white pointer-events-none"></div>
         <div className="w-full h-[5vh] border-b-1 border-white"></div>
         <div className="w-full h-[30vh] border-b-1 border-white flex justify-center">
-          <div className="w-full h-full max-w-[95vw] flex justify-center items-center xl:gap-0 gap-5 max-h-full xl:px-2 px-1 pb-10 xl:py-14">
+          <div className="w-full h-full max-w-[95vw] flex justify-center items-center xl:gap-0 gap-5 max-h-full xl:px-2 px-1 xl:py-14">
             <Typography
               variant="h5"
-              className="text-white text-xl"
+              className="text-white text-base"
               withAnimation
             >
               The TC Parking Area is a dedicated parking facility for the
