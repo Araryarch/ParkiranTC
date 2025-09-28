@@ -10,8 +10,8 @@ export const getMetadataItems = (
   const pathname = baseUrl + slug
   const title = templateTitle ? `${templateTitle} | Parkiran TC` : 'Parkiran TC'
   const description = templateDescription
-    ? 'Branding daripada parkiran teknik informatika ITS'
-    : 'Branding daripada parkiran teknik informatika ITS'
+    ? 'Branding Parkiran Teknik Informatika ITS'
+    : 'Branding Parkiran Teknik Informatika ITS'
   // const ogUrl = new URL(
   //   baseUrl + `/api/og?title=${templateTitle}&description=${description}`,
   // ).href;
