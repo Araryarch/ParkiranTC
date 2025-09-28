@@ -30,6 +30,7 @@ export default function Hero() {
           <Typography
             variant="h1"
             weight="black"
+            font="Monday"
             className="text-white -rotate-90 md:text-9xl text-5xl"
           >
             HOME
@@ -52,10 +53,7 @@ export default function Hero() {
           ></motion.div>
         </div>
       </motion.section>
-      <section
-        id="about"
-        className="w-full min-h-[100svh] bg-black relative border-t-1 border-b-1"
-      >
+      <section className="w-full min-h-[100svh] bg-black relative border-t-1 border-b-1">
         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[95vw] border-r-1 border-l-1 border-white pointer-events-none"></div>
         <div className="w-full h-[5vh] border-b-1 border-white"></div>
         <div className="w-full h-[30vh] border-b-1 border-white flex justify-center">

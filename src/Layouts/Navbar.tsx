@@ -20,7 +20,7 @@ export default function Navbar() {
       >
         <Link
           href={'#'}
-          className="md:text-3xl text-white uppercase font-bold relative group"
+          className="md:text-3xl text-white uppercase font-bold relative font-Monday group"
         >
           Home
           <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -33,7 +33,7 @@ export default function Navbar() {
       >
         <Link
           href={'#about'}
-          className="md:text-3xl text-white uppercase font-bold relative group"
+          className="md:text-3xl text-white uppercase font-bold font-Monday relative group"
         >
           About
           <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>

@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-Inter: var(--font-Inter);
-  --font-ClashDisplay: var(--font-Clash-Display);
+  --font-Monday: var(--font-Monday);
+  --font-Livvic: var(--font-Livvic);
 }
 
 :root {
