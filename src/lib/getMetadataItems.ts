@@ -5,7 +5,7 @@ export const getMetadataItems = (
 ) => {
   const baseUrl =
     process.env.NODE_ENV === 'production'
-      ? 'https://parkirantc.vercel.app/'
+      ? 'https://parkiran-tc.vercel.app/'
       : 'http://localhost:3000'
   const pathname = baseUrl + slug
   const title = templateTitle ? `${templateTitle} | Parkiran TC` : 'Parkiran TC'
