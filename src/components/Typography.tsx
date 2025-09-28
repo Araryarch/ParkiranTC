@@ -1,5 +1,8 @@
+'use client'
+
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 
 export enum TypographyVariant {
   h1,
@@ -8,14 +11,14 @@ export enum TypographyVariant {
   h4,
   h5,
   h6,
-  t1,
-  t2,
-  bt,
+  p1,
+  p2,
+  p3,
   l1,
   l2,
 }
 
-export type FontVariant = 'Inter' | 'ClashDisplay'
+export type FontVariant = 'Livvic' | 'Monday'
 
 export type FontWeight =
   | 'thin'
@@ -35,7 +38,31 @@ type TypographyProps<T extends React.ElementType> = {
   weight?: FontWeight
   font?: FontVariant
   variant?: keyof typeof TypographyVariant
+  withAnimation?: boolean
   children: React.ReactNode
+}
+
+const AnimatedCharacter = ({
+  char,
+  startProgress,
+  endProgress,
+  scrollYProgress,
+}: {
+  char: string
+  startProgress: number
+  endProgress: number
+  scrollYProgress: MotionValue<number>
+}) => {
+  const opacity = useTransform(
+    scrollYProgress,
+    [startProgress, endProgress],
+    [0, 1],
+  )
+  return (
+    <span className="relative inline-block">
+      <motion.span style={{ opacity }}>{char}</motion.span>
+    </span>
+  )
 }
 
 export default function Typography<T extends React.ElementType>({
@@ -44,21 +71,57 @@ export default function Typography<T extends React.ElementType>({
   children,
   weight = 'regular',
   className,
-  font = 'Inter',
-  variant = 'bt',
+  font = 'Livvic',
+  variant = 'p3',
+  withAnimation = false,
   ...props
 }: TypographyProps<T> &
   Omit<React.ComponentProps<T>, keyof TypographyProps<T>>) {
   const Component = as || 'p'
+  const containerRef = React.useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 0.9', 'start 0.25'],
+  })
+
+  const shouldAnimate = withAnimation && typeof children === 'string'
+  const textContent = typeof children === 'string' ? children : null
+
+  const charactersData = React.useMemo(() => {
+    if (!shouldAnimate || !textContent) return null
+
+    const words = textContent.split(' ')
+    const result = []
+
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i]
+      const start = i / words.length
+      const end = start + 1 / words.length
+      const step = (end - start) / word.length
+
+      const chars = []
+      for (let j = 0; j < word.length; j++) {
+        chars.push({
+          char: word[j],
+          charStart: start + j * step,
+          charEnd: start + (j + 1) * step,
+        })
+      }
+
+      result.push({ word, chars })
+    }
+    return result
+  }, [shouldAnimate, textContent])
+
   return (
     <Component
+      ref={containerRef}
       id={id}
       className={cn(
-        'text-black',
-        // *=============== Font Type ==================
+        'text-white',
         {
-          Inter: 'font-Inter',
-          ClashDisplay: 'font-ClashDisplay',
+          Livvic: 'font-Livvic',
+          Monday: 'font-Monday',
         }[font],
         {
           thin: 'font-thin',
@@ -71,7 +134,6 @@ export default function Typography<T extends React.ElementType>({
           extrabold: 'font-extrabold',
           black: 'font-black',
         }[weight],
-        // *=============== Font Variants ==================
         {
           h1: 'md:text-[72px]',
           h2: 'md:text-[60px]',
@@ -79,9 +141,9 @@ export default function Typography<T extends React.ElementType>({
           h4: 'md:text-[36px]',
           h5: 'md:text-[30px]',
           h6: 'md:text-[24px]',
-          t1: 'md:text-[20px]',
-          t2: 'md:text-[18px]',
-          bt: 'md:text-[16px]',
+          p1: 'md:text-[20px]',
+          p2: 'md:text-[18px]',
+          p3: 'md:text-[16px]',
           l1: 'md:text-[14px]',
           l2: 'md:text-[12px]',
         }[variant],
@@ -89,7 +151,21 @@ export default function Typography<T extends React.ElementType>({
       )}
       {...props}
     >
-      {children}
+      {shouldAnimate && charactersData
+        ? charactersData.map((wordData, i) => (
+            <span key={i} className="inline-block mr-2">
+              {wordData.chars.map((charData, j) => (
+                <AnimatedCharacter
+                  key={`c_${j}`}
+                  char={charData.char}
+                  startProgress={charData.charStart}
+                  endProgress={charData.charEnd}
+                  scrollYProgress={scrollYProgress}
+                />
+              ))}
+            </span>
+          ))
+        : children}
     </Component>
   )
 }

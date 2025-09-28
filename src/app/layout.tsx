@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 import Providers from '@/app/providers'
 import { BASE_METADATA } from '@/contents/metadata'
-import { Inter, ClashDisplay } from '@/lib/font'
+import { Livvic, Monday } from '@/lib/font'
 import { cn } from '@/lib/utils'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link
           rel="shortcut icon"
@@ -27,7 +27,7 @@ export default function RootLayout({
           type="image/x-icon"
         />
       </head>
-      <body className={cn(Inter.variable, ClashDisplay.variable, 'dark')}>
+      <body className={cn(Livvic.variable, Monday.variable, 'bg-black')}>
         <Providers>{children}</Providers>
         <GoogleAnalytics gaId="" />
       </body>
